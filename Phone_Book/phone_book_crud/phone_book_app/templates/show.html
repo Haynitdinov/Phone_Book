@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All contacts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<div class="container mt-3">
+  <h4>Książka telefoniczna</h4>
+  <br>
+<body>
+  <form action="{% url 'show' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+  </form>
+  <br>
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Telefon</th>
+        <th>Email</th>
+        <th><a href="/new" class="btn btn-primary">Dodaj nowy kontakt</a></th>
+    </tr>
+    </thead>
+    <tbody>
+{% for person in object_list %}
+    <tr>
+        <td>{{ person.pfirst_name }}</td>
+        <td>{{ person.plast_name }}</td>
+        <td>{{ person.pphone_number }}</td>
+        <td>{{ person.pemail }}</td>
+        <td>
+            <a href="/edit/{{ person.id }}" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" >Edytuj</span></a>
+            <a href="/delete/{{ person.id }}" class="btn btn-danger">Usuń</a>
+
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+</body>
+</html>
